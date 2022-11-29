@@ -6,6 +6,7 @@
 function encdec(){
 	let str_input = document.getElementById("input").value;
 	let operation = document.getElementById("operation").value;
+	let answer = "";
 	
 	const mcode = {
       'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
@@ -28,7 +29,6 @@ function encdec(){
 	{
 		const final_array = [];
 		const mcode_keys = Object.keys(mcode);
-		let flag = false;
 
 		str_input = str_input.toUpperCase();
 		if (special_char.test(str_input) == true)
@@ -41,18 +41,16 @@ function encdec(){
 			for (let j = 0; j < str_input.length; j++)
 			{
 				current_letter = str_input.slice(j, j+1);
-				final_array.push(mcode[current_letter]);
+				answer += mcode[current_letter];
+				answer += " ";
 			}
 		}
-		window.alert(final_array);
 	}
 	if (operation == "dec")
 	{
 		window.alert("Decode function")
 	}
 
-
-	
 	document.getElementById("output").innerHTML = answer;
 }
 
@@ -79,7 +77,7 @@ function encdec(){
 
 <div>
 <p>Encoded/decoded Morse code: </p>
-<textarea id="output" rows='5' cols='50' readonly></textarea>
+<textarea id="output" rows='5' cols='50' readonly> </textarea>
 </div>
 </form>
 </div>
