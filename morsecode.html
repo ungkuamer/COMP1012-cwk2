@@ -27,7 +27,6 @@ function encdec(){
 
 	if (operation == "enc")
 	{
-		const final_array = [];
 		const mcode_keys = Object.keys(mcode);
 
 		str_input = str_input.toUpperCase();
@@ -46,11 +45,29 @@ function encdec(){
 			}
 		}
 	}
+
 	if (operation == "dec")
 	{
-		window.alert("Decode function")
-	}
+		const mcode_values = Object.values(mcode);
+		function getValue(object, value)
+		{
+			return Object.keys(object).find(key => object[key] === value);
+		}
 
+		new_str = str_input.split(" ");
+
+		for (let i = 0; i < new_str.length; i++)
+		{
+			if (new_str[i] == "")
+			{
+				answer += " ";
+			}
+			else
+			{
+				answer += getValue(mcode, new_str[i]);
+			}
+		}
+	}
 	document.getElementById("output").innerHTML = answer;
 }
 
