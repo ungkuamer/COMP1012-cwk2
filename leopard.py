@@ -196,39 +196,38 @@ class Leopard:
         """
         count = 0
         location = []
+        total_array = []
 
         if len(kwargs) == 0:
             print("No condition is given.")
             exit()
 
-        for i in kwargs.keys():  # finding the row which data is located
-            found = self.header.find(i)
-            if found != -1:
-                location.append(found)
+        headers = self.header
+        datas = self.data
+        values = list(kwargs.values())
+    
+        for keys in kwargs.keys():  # finding the row which data is located
+            for i in range(len(headers)):
+                if keys == headers[i]:
+                    location.append(i)
 
         if len(location) != len(kwargs.keys()):
             print("The following header does not exists")
             exit()
 
-        for keys, value in kwargs.items():
-            for i in range(len(self.data)):
-                for j in range(len(location)):
-                    if 
+    
+        for i in range(len(location)): # repeat based on num of condition
+            totals = 0
+            current_check = location[i]
+            for j in range(len(datas)): # repeat until end of data
+                if datas[j][current_check] == values[i]:
+                    totals += 1
+            total_array.append(totals)
 
-        for i in range(len(self.data)):
-            for j in range(len(location)):
-                current_location = location[j]
-
-        
-
-
-
-
-
-            count += 1
+        count = min(total_array)
 
         return count
-
+    
 
 if __name__ == "__main__":
     # DO NOT COMMENT ALL WHEN SUBMIT YOUR FILE, cannot have an if statement
@@ -236,26 +235,28 @@ if __name__ == "__main__":
 
     # test diabetes_data.csv
     test = Leopard("diabetes_data.csv")
-    #print(test.get_header())
-    #print(test.get_data())
-    #stats = test.stats()
-    #print(stats)
-    #test.html_stats(stats, "diabetes.html")
-    #print()
+    print(test.get_header())
+    print(test.get_data())
+    stats = test.stats()
+    print(stats)
+    test.html_stats(stats, "diabetes.html")
+    print(test.count_instances(Gender="Male", weakness="Yes"))
 
     # test fide2021.csv
     test2 = Leopard("fide2021.csv")
-    #print(test2.get_header())
-    #print(test.get_data())
-    #stats2 = test2.stats()
-    #print(stats2)
-    #test2.html_stats(stats2, "fide2021.html")
-    #print()
+    print(test2.get_header())
+    print(test.get_data())
+    stats2 = test2.stats()
+    print(stats2)
+    test2.html_stats(stats2, "fide2021.html")
+    print(test2.count_instances(Country="NOR", Title="g"))
+ 
+    
 
     # test student.csv
     test3 = Leopard("student.csv")
-    #print(test3.get_header())
-    #print(test.get_data())
+    print(test3.get_header())
+    print(test.get_data())
     stats3 = test3.stats()
-    #print(stats3)
+    print(stats3)
     test3.html_stats(stats3, "student.html")
