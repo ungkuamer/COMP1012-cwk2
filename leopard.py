@@ -197,6 +197,7 @@ class Leopard:
         count = 0
         location = []
         total_array = []
+        row_num = []
 
         if len(kwargs) == 0:
             print("No condition is given.")
@@ -217,15 +218,14 @@ class Leopard:
 
     
         for i in range(len(location)): # repeat based on num of condition
-            totals = 0
+            row_num = []
             current_check = location[i]
             for j in range(len(datas)): # repeat until end of data
                 if datas[j][current_check] == values[i]:
-                    totals += 1
-            total_array.append(totals)
+                    row_num.append(j)
+            total_array.append(row_num)
 
-        count = min(total_array)
-
+        count = len(set(total_array[0]).intersection(*total_array[1:]))
         return count
     
 
@@ -235,28 +235,29 @@ if __name__ == "__main__":
 
     # test diabetes_data.csv
     test = Leopard("diabetes_data.csv")
-    print(test.get_header())
-    print(test.get_data())
-    stats = test.stats()
-    print(stats)
-    test.html_stats(stats, "diabetes.html")
+    #print(test.get_header())
+    #print(test.get_data())
+    #stats = test.stats()
+    #print(stats)
+    #test.html_stats(stats, "diabetes.html")
     print(test.count_instances(Gender="Male", weakness="Yes"))
 
     # test fide2021.csv
     test2 = Leopard("fide2021.csv")
-    print(test2.get_header())
-    print(test.get_data())
-    stats2 = test2.stats()
-    print(stats2)
-    test2.html_stats(stats2, "fide2021.html")
-    print(test2.count_instances(Country="NOR", Title="g"))
+    #print(test2.get_header())
+    #print(test.get_data())
+    #stats2 = test2.stats()
+    #print(stats2)
+    #test2.html_stats(stats2, "fide2021.html")
+    #print(test2.count_instances(Country="NOR", Title="g"))
  
     
 
     # test student.csv
     test3 = Leopard("student.csv")
-    print(test3.get_header())
-    print(test.get_data())
-    stats3 = test3.stats()
-    print(stats3)
-    test3.html_stats(stats3, "student.html")
+    #print(test3.get_header())
+    #print(test.get_data())
+    #stats3 = test3.stats()
+    #print(stats3)
+    #test3.html_stats(stats3, "student.html")
+
